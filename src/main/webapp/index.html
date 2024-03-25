@@ -1,28 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="index.css">
-<!--    <script src="script.js"></script>-->
-<!--    <script src="request.js"></script>-->
-    <title>AnonBook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonbook</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body onload="getPosts()">
-<header>
-    <h1>Welcome to AnonBook!</h1>
-</header>
-
-<div id="addPost">
-    <button id="addPostButton" type="button" onclick="showAddPostEdit()" ></button>
-    <div id="tape"></div>
+<body>
+<div class="container">
+    <h1>Welcome to Anonbook</h1>
+    <div id="posts-container">
+    </div>
 </div>
-
-<div id="showAddPostEdit">
-    <h2>Add New Post</h2>
-    <textarea id="post" placeholder="Would you share your thoughts with us?"></textarea>
-    <input type="file" id="photoUpload" accept="image/*" onchange="handleFileChange(event)">
-    <input id="postButton" type="submit" value="Post" onclick="post()">
-</div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="request.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

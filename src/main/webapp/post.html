@@ -2,15 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="post.css">
-<!--    <script src="script.js"></script>-->
-<!--    <script src="request.js"></script>-->
-    <title>Post</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Post</title>
+    <link rel="stylesheet" href="postStyle.css">
 </head>
-<body onload="getPostData()">
-<header>
-    <h1>AnonBook</h1>
-</header>
-<div id="root"></div>
+<body>
+<div class="container">
+    <h1>View Post</h1>
+    <div id="post-container"></div>
+    <h2>Add Comment</h2>
+    <form id="comment-form">
+        <textarea id="comment-content" placeholder="Enter your comment"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="comments-container"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="request.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
