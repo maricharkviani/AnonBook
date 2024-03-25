@@ -1,0 +1,161 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #DDD6CE;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #B0A99F;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+header h1 {
+    color: black;
+    text-align: center;
+    margin: 0;
+}
+
+#addPost {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #c2baae;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 500px;
+}
+
+#addPost:hover {
+    background-color: #B8BEA4;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+#tape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#postEditMenu input[type="file"] {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+#postEditMenu button {
+    width: 100%;
+    background-color: #646436;
+    color: black;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+#postEditMenu button:hover {
+    background-color: #B8BEA4;
+}
+
+#postContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#postEditMenu {
+    position: fixed;
+    display: none;
+    top: 20%;
+    left: 29%;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #c2baae;
+    color: black;
+    z-index: 1000;
+}
+
+#postEditMenu h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#postTitle {
+    width: 95%;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+#uploadPhoto {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#postButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #B8BEA4;
+    color: #fff;
+    cursor: pointer;
+}
+
+#postButton:hover {
+    background-color: #B8BEA4;
+}
+
+.time {
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.postImg {
+    margin: 1rem auto;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10%;
+}
+
+.postDiv {
+    margin-top: 20px;
+    background-color: #c2baae;
+    border-radius: 10%;
+    color: black;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
