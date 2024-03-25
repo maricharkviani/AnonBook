@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 
@@ -24,6 +25,8 @@ public class PostServlet extends HttpServlet {
         List<Post> posts = postCommentManagement.getAllPosts();
         response.setContentType("application/json");
         objectMapper.writeValue(response.getOutputStream(), posts);
+        PrintWriter printWriter=response.getWriter();
+        printWriter.println(posts);
     }
 
     @Override

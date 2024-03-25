@@ -1,7 +1,6 @@
 package com.example.anonbook.DAO;
 
 import com.example.anonbook.model.Comment;
-import com.example.anonbook.model.CommentPostManagement;
 import com.example.anonbook.model.Post;
 import com.example.anonbook.request.AddPostRequest;
 import com.example.anonbook.response.GetCommentResponse;

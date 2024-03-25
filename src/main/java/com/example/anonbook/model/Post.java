@@ -2,8 +2,6 @@ package com.example.anonbook.model;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "post")
 public class Post {
@@ -20,19 +18,14 @@ public class Post {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Date created_at;
+    private String created_at;
 
-    public Post(Long id, String post_text, String post_image, Date created_at) {
-        this.id = id;
+    public Post(String post_text, String post_image, String created_at) {
         this.post_text = post_text;
         this.post_image = post_image;
         this.created_at = created_at;
     }
 
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getId() {
         return id;
@@ -54,11 +47,11 @@ public class Post {
         this.post_image = post_image;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 }

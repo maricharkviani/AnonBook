@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 
@@ -24,6 +25,8 @@ public class CommentServlet extends HttpServlet {
         List<Comment> comments = CommentPostManagement.getAllCommentsForPost(postId);
         response.setContentType("application/json");
         objectMapper.writeValue(response.getOutputStream(), comments);
+        PrintWriter printWriter=response.getWriter();
+        printWriter.println(comments);
     }
 
     @Override

@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('#comment-form').submit(function (event) {
         event.preventDefault();
         var content = $('#comment-content').val();
-        var postId = $('#post-id').val(); // Assuming you have a hidden input with post ID
+        var postId = $('#post-id').val();
         addComment(postId, content);
     });
 });
