@@ -1,0 +1,31 @@
+.post {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.post .content {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.comment {
+    background-color: #f9f9f9;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.comment p {
+    margin: 0;
+    font-size: 14px;
+}
