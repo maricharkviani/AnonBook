@@ -6,6 +6,8 @@ import com.example.anonbook.model.Post;
 import com.example.anonbook.request.AddPostRequest;
 import com.example.anonbook.response.GetCommentResponse;
 import com.example.anonbook.response.GetPostResponse;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaQuery;
 import request.GetCommentRequest;
@@ -15,10 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLController implements JDBCController {
+    private final JDBCConnector jdbcConnector = JDBCConnector.getInstance();
     private CriteriaQuery<Post> select;
     private TypedQuery<Post> postTypedQuery;
-    private final JDBCConnector jdbcConnector = JDBCConnector.getInstance();
-
 
     @Override
     public List<GetPostResponse> addPostResponses() {
@@ -40,7 +41,7 @@ public class MySQLController implements JDBCController {
         try {
             jdbcConnector.getEntityTransaction().begin();
 
-            Post post = new Post(addPostRequests.title(), addPostRequests.imgName(),addPostRequests.time());
+            Post post = new Post(addPostRequests.title(), addPostRequests.imgName(), addPostRequests.time());
             System.out.println(post);
             jdbcConnector.getEntityManager().persist(post);
 
@@ -66,35 +67,38 @@ public class MySQLController implements JDBCController {
     }
 
     @Override
-    public List<GetCommentResponse> getCommentsResponse(GetCommentRequest getCommentsRequest){
-        jdbcConnector.initializePostCommentCriteria();
-
-        CriteriaQuery<CommentPostManagement> CommentPostManagementCriteriaQuery = jdbcConnector.getPostCommentCriteriaQuery().select(
-                jdbcConnector.getPostCommentRoot()
-        ).where(jdbcConnector.getCriteriaBuilder().equal(jdbcConnector.getPostCommentRoot().get("postId"), getCommentsRequest.postId()));
-
-        TypedQuery<CommentPostManagement> postCommentTypedQuery = jdbcConnector.getEntityManager().createQuery(CommentPostManagementCriteriaQuery);
-
-        List<CommentPostManagement> postCommentList = postCommentTypedQuery.getResultList();
-
-        jdbcConnector.initializeCommentCriteria();
-
-        List<GetCommentResponse> getCommentsResponses = new ArrayList<>();
-
-        for (CommentPostManagement commentPostManagement : postCommentList) {
-            CriteriaQuery<Comment> comments = null;
-//            comments = jdbcConnector.getCommentCriteriaQuery().select(
-//                    jdbcConnector.getCommentRoot()
-//boloshi unda davamato comentaris id
-//            ).where(jdbcConnector.getCriteriaBuilder().equal(jdbcConnector.getCommentRoot().get("id"), CommentPostManagement.));
-
-            TypedQuery<Comment> commentTypedQuery = jdbcConnector.getEntityManager().createQuery(comments);
-
-            Comment comment = commentTypedQuery.getSingleResult();
-            getCommentsResponses.add(new GetCommentResponse(comment.getId(), comment.getContent()));
+    public List<GetCommentResponse> getCommentsResponse(GetCommentRequest getCommentsRequest) {
+        EntityManager entityManager = JDBCConnector.instance.getEntityManager();
+        try {
+            TypedQuery<GetCommentResponse> query = entityManager.createQuery("SELECT NEW com.example.anonbook.response.GetCommentResponse(c.id, c.content, c.created_at) FROM Comment c WHERE c.postId = :postId ORDER BY c.createdAt DESC", GetCommentResponse.class);
+            query.setParameter("postId", getCommentsRequest.postId());
+            return query.getResultList();
+        } finally {
+            entityManager.close();
         }
 
-        return getCommentsResponses;
+    }
+
+    @Override
+    public void addComment(int postId, String comment) {
+        EntityManager entityManager = JDBCConnector.instance.getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            Comment commentEntity = new Comment();
+            commentEntity.setPostId(postId);
+            commentEntity.setContent(comment);
+            entityManager.persist(commentEntity);
+
+            transaction.commit();
+        } catch (Exception ex) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw ex;
+        } finally {
+            entityManager.close();
+        }
     }
 
 

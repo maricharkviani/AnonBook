@@ -18,5 +18,5 @@ public interface JDBCController {
 
     List<GetCommentResponse> getCommentsResponse(GetCommentRequest getCommentsRequest);
 
-//    void addComment(int postId, String comment);
+    void addComment(int postId, String comment);
 }

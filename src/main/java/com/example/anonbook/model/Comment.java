@@ -21,6 +21,13 @@ public class Comment {
     @Column(name = "created_at")
     private Date createdAt;
 
+    public Comment() {
+        this.id = id;
+        this.postId = postId;
+        this.content = content;
+        this.createdAt = createdAt;
+    }
+
     public Long getId() {
         return id;
     }
